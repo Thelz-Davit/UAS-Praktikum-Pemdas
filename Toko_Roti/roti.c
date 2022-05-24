@@ -100,4 +100,29 @@ void userlogin(void){
     }
     free ( pUser);//free allocated memory
     fclose(fp);
+<<<<<<< Updated upstream
 }
+=======
+}
+
+void Read(){
+    FILE *output;
+    struct roti pRoti;
+    output = fopen("roti.dat","r");
+
+    printf("Lihat Data Roti\n");
+
+    if(output==NULL){
+        fprintf(stderr,"Can't open file");
+    } else{
+        printf("Ini Adalah Roti\n");
+    } while(fread(&pRoti,sizeof(struct roti),1,output)){
+        printf("Kode Roti: %s\n",pRoti.kdRoti);
+        printf("Nama Roti: %s\n",pRoti.namaRoti);
+        printf("Harga: %d\n",pRoti.harga);
+    }
+    fclose(output);
+    getch();
+
+}
+>>>>>>> Stashed changes
