@@ -9,13 +9,13 @@
 //     {
 //         printf("File tidak bisa dibuka");
 //     }
-    
+
 //     while (1)
 //     {
 //         fgets(uChar,10,fp);
 //         if (strcmp(uChar,input)==0);
 //         {
-//             fseek(fp,10-1,SEEK_CUR); //angka yang tengah harusnya menghitung panjang variabel lalu di mulai dari belakang 
+//             fseek(fp,10-1,SEEK_CUR); //angka yang tengah harusnya menghitung panjang variabel lalu di mulai dari belakang
 //             printf("Masukan isi baru");
 //             scanf("%s",&newData);
 //             fputs(newData,fp);
@@ -27,31 +27,57 @@
 //         }
 //     }
 //     fclose(fp);
-    
+
 // }
 
-// int Create(struct apapun *h){ //masih error dalam implementasi struct
-//     char name[1024];
-//     printf("Enter file name: " );
-//     scanf("%s", name); // Read in filename
-//     FILE *output = fopen(name, "w   "); // open the file to write
-//     if (!output) {
-//         return -1; // error
-//     }
-//     for (int i = 0; i < 1; ++i) {
-//         // write a line - see fprintf documentation
-//         fprintf(output, "%s %s %s %s\n", h[i].f_name, h[i].last, h[i].s,h[i].g);
-//         // I'm missing some error checks here - you should not
-//     }
-//     fclose(output); // close
-//     return 0;
-// }
+void CreateRoti(){ //masih error dalam implementasi struct
+    int pil;
+    FILE *output = fopen("roti.dat", "a+   "); // open the file to write
+    pRoti=(struct roti *)malloc(sizeof(struct roti));
+    if (!output) {
+        return -1; // error
+    }
+    //for (int i = 0; i < 1; ++i) {
+        // write a line - see fprintf documentation
+        printf("Masukan Kode Roti: ");
+        scanf("%9s",pRoti->kdRoti);
+        printf("Masukan Nama Roti: ");
+        scanf("%9s",pRoti->namaRoti);
+        printf("Masukan Harga: ");
+        scanf("%d",&pRoti->harga);
+        printf("1. Roti Tawar\n");
+        printf("2. Roti Gandum\n");
+        printf("3. Roti Manis\n");
+        printf("Masukan pilihan roti: ");
+        scanf("%d",&pil);
+        switch (pil)
+        {
+        case 1:
+            strcpy(pRoti->jenisRoti,"Roti Tawar");
+            break;
+        case 2:
+            strcpy(pRoti->jenisRoti, "Roti Gandum");
+            break;
+        case 3:
+            strcpy(pRoti->jenisRoti, "Roti Manis");
+            break;
+        default:
+            printf("Pilihan tidak ditemukan");
+            break;
+        }
+        fwrite (pRoti, sizeof(struct roti), 1, output);
+
+        // I'm missing some error checks here - you should not
+    //}
+    fclose(output); // close
+    return 0;
+}
 
 void userlogin(void){
     FILE *fp;
-    char uName[10], pwd[10];int i;char c;
+    char uName[10], pwd[10],name[10];int i;char c;
 
-    pUser=(struct user *)malloc(sizeof(struct user));
+    pRoti=(struct roti *)malloc(sizeof(struct roti));
 
     printf("1. Login Through An Existing Account\n2. Create New account\n");
     scanf("%d",& i);
@@ -88,6 +114,10 @@ void userlogin(void){
                         exit ( 1);
                     }
                 }
+                printf("Kode Admin: ");
+                scanf("%9s",pUser->kodeAdmin);
+                printf("Name: ");
+                scanf("%9s",pUser->name);
                 printf("Choose A Username: ");
                 scanf("%9s",pUser->username);
                 printf("Choose A Password: ");
