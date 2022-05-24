@@ -30,26 +30,50 @@
     
 // }
 
-// int Create(struct apapun *h){ //masih error dalam implementasi struct
-//     char name[1024];
-//     printf("Enter file name: " );
-//     scanf("%s", name); // Read in filename
-//     FILE *output = fopen(name, "w   "); // open the file to write
-//     if (!output) {
-//         return -1; // error
-//     }
-//     for (int i = 0; i < 1; ++i) {
-//         // write a line - see fprintf documentation
-//         fprintf(output, "%s %s %s %s\n", h[i].f_name, h[i].last, h[i].s,h[i].g);
-//         // I'm missing some error checks here - you should not
-//     }
-//     fclose(output); // close
-//     return 0;
-// }
+void CreateRoti(){ //masih error dalam implementasi struct
+    int pil;
+    FILE *output = fopen("roti.txt", "a+   "); // open the file to write
+    if (!output) {
+        return -1; // error
+    }
+    for (int i = 0; i < 1; ++i) {
+        // write a line - see fprintf documentation
+        printf("Masukan Kode Roti: ");
+        scanf("%9s",pRoti->kdRoti);
+        printf("Masukan Nama Roti");
+        scanf("%9s",pRoti->namaRoti);
+        printf("Masukan Harga: ");
+        scanf("%9d",pRoti->harga);
+        printf("1. Roti Tawar");
+        printf("2. Roti Gandum");
+        printf("3. Roti Manis");
+        printf("Masukan pilihan roti: ");
+        scanf("%d",&pil);
+        switch (pil)
+        {
+        case 1:
+            strcpy(pRoti->jenisRoti,"Roti Tawar");
+            break;
+        case 2:
+            strcpy(pRoti->jenisRoti, "Roti Gandum");
+            break;
+        case 3:
+            strcpy(pRoti->jenisRoti, "Roti Manis");
+            break;
+        default:
+            printf("Pilihan tidak ditemukan");
+            break;
+        }
+        
+        // I'm missing some error checks here - you should not
+    }
+    fclose(output); // close
+    return 0;
+}
 
 void userlogin(void){
     FILE *fp;
-    char uName[10], pwd[10];int i;char c;
+    char uName[10], pwd[10],name[10];int i;char c;
 
     pUser=(struct user *)malloc(sizeof(struct user));
 
@@ -88,6 +112,10 @@ void userlogin(void){
                         exit ( 1);
                     }
                 }
+                printf("Kode Admin: ");
+                scanf("%9s",pUser->kodeAdmin);
+                printf("Name: ");
+                scanf("%9s",pUser->name);
                 printf("Choose A Username: ");
                 scanf("%9s",pUser->username);
                 printf("Choose A Password: ");

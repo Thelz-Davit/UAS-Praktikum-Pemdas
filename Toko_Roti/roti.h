@@ -10,13 +10,18 @@
         char kdRoti[10];
         char namaRoti[20];
         int harga;
-    };
+        char jenisRoti[10];
+        int stok;
+    }*pRoti;
 
     struct user{
-    char username[10];
-    char password[10];
+        char kodeAdmin[10];
+        char username[10];
+        char password[10];
+        char name[10];
     }*pUser;    
-    // int Create(struct apapun *h);
+
+    void Create();
     void Read();
     void Update(char input[]);
     void Delete();
