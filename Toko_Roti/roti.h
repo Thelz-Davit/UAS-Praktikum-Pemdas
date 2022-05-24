@@ -4,11 +4,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include <conio.h>
-    
+
     struct roti
     {
         char kdRoti[10];
-        char namaRoti[20];
+        char namaRoti[10];
         int harga;
         char jenisRoti[10];
         int stok;
@@ -19,7 +19,7 @@
         char username[10];
         char password[10];
         char name[10];
-    }*pUser;    
+    }*pUser;
 
     void Create();
     void Read();
@@ -28,6 +28,6 @@
     void Sort();
     void Search();
 
-    
-    
+
+
 #endif

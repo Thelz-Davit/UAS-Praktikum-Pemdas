@@ -9,13 +9,13 @@
 //     {
 //         printf("File tidak bisa dibuka");
 //     }
-    
+
 //     while (1)
 //     {
 //         fgets(uChar,10,fp);
 //         if (strcmp(uChar,input)==0);
 //         {
-//             fseek(fp,10-1,SEEK_CUR); //angka yang tengah harusnya menghitung panjang variabel lalu di mulai dari belakang 
+//             fseek(fp,10-1,SEEK_CUR); //angka yang tengah harusnya menghitung panjang variabel lalu di mulai dari belakang
 //             printf("Masukan isi baru");
 //             scanf("%s",&newData);
 //             fputs(newData,fp);
@@ -27,26 +27,27 @@
 //         }
 //     }
 //     fclose(fp);
-    
+
 // }
 
 void CreateRoti(){ //masih error dalam implementasi struct
     int pil;
-    FILE *output = fopen("roti.txt", "a+   "); // open the file to write
+    FILE *output = fopen("roti.dat", "a+   "); // open the file to write
+    pRoti=(struct roti *)malloc(sizeof(struct roti));
     if (!output) {
         return -1; // error
     }
-    for (int i = 0; i < 1; ++i) {
+    //for (int i = 0; i < 1; ++i) {
         // write a line - see fprintf documentation
         printf("Masukan Kode Roti: ");
         scanf("%9s",pRoti->kdRoti);
-        printf("Masukan Nama Roti");
+        printf("Masukan Nama Roti: ");
         scanf("%9s",pRoti->namaRoti);
         printf("Masukan Harga: ");
-        scanf("%9d",pRoti->harga);
-        printf("1. Roti Tawar");
-        printf("2. Roti Gandum");
-        printf("3. Roti Manis");
+        scanf("%d",&pRoti->harga);
+        printf("1. Roti Tawar\n");
+        printf("2. Roti Gandum\n");
+        printf("3. Roti Manis\n");
         printf("Masukan pilihan roti: ");
         scanf("%d",&pil);
         switch (pil)
@@ -64,9 +65,10 @@ void CreateRoti(){ //masih error dalam implementasi struct
             printf("Pilihan tidak ditemukan");
             break;
         }
-        
+        fwrite (pRoti, sizeof(struct roti), 1, output);
+
         // I'm missing some error checks here - you should not
-    }
+    //}
     fclose(output); // close
     return 0;
 }
@@ -75,7 +77,7 @@ void userlogin(void){
     FILE *fp;
     char uName[10], pwd[10],name[10];int i;char c;
 
-    pUser=(struct user *)malloc(sizeof(struct user));
+    pRoti=(struct roti *)malloc(sizeof(struct roti));
 
     printf("1. Login Through An Existing Account\n2. Create New account\n");
     scanf("%d",& i);
