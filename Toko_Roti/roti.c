@@ -32,47 +32,124 @@
 
 void CreateRoti(){ //masih error dalam implementasi struct
     int pil;
-    FILE *output = fopen("roti.dat", "a+   "); // open the file to write
+    FILE *output;
+    if ( ( output=fopen("roti.txt", "a+")) == NULL) {
+                if ( ( output=fopen("roti.txt", "w+")) == NULL) {
+                    printf ("Could not open file\n");
+                    exit ( 1);
+                }
+            }
     pRoti=(struct roti *)malloc(sizeof(struct roti));
     if (!output) {
         return -1; // error
     }
-    //for (int i = 0; i < 1; ++i) {
-        // write a line - see fprintf documentation
         printf("Masukan Kode Roti: ");
-        scanf("%9s",pRoti->kdRoti);
+        scanf("%s9",pRoti->kdRoti);
         printf("Masukan Nama Roti: ");
         scanf("%9s",pRoti->namaRoti);
         printf("Masukan Harga: ");
-        scanf("%d",&pRoti->harga);
+        scanf("%9d",&pRoti->harga);
         printf("1. Roti Tawar\n");
         printf("2. Roti Gandum\n");
         printf("3. Roti Manis\n");
         printf("Masukan pilihan roti: ");
-        scanf("%d",&pil);
-        switch (pil)
-        {
-        case 1:
-            strcpy(pRoti->jenisRoti,"Roti Tawar");
-            break;
-        case 2:
-            strcpy(pRoti->jenisRoti, "Roti Gandum");
-            break;
-        case 3:
-            strcpy(pRoti->jenisRoti, "Roti Manis");
-            break;
-        default:
-            printf("Pilihan tidak ditemukan");
-            break;
-        }
-        fwrite (pRoti, sizeof(struct roti), 1, output);
+        scanf("%9s",pRoti->jenisRoti);
+        printf("Masukan Stok: ");
+        scanf("%9d",&pRoti->stok);
 
-        // I'm missing some error checks here - you should not
-    //}
+        fwrite (pRoti, sizeof(struct roti), 1, output);
+    fclose(output); // close
+    return 0;
+}
+void CreatePlg(){ //masih error dalam implementasi struct
+    int pil;
+    FILE *output = fopen("pelanggan.dat", "a+ "); // open the file to write
+    pPlg=(struct pelanggan *)malloc(sizeof(struct pelanggan));
+    if (!output) {
+        return -1; // error
+    }
+        printf("Masukan Kode Pelanggan: ");
+        scanf("%9s",pPlg->kodeP);
+        printf("Masukan Nama Pelanggan: ");
+        scanf("%9s",pPlg->nama);
+        printf("Masukan Alamat Pelanggan: ");
+        scanf("%s",&pPlg->alamt);
+        printf("Masukan No Telepon: ");
+        scanf("%d",pPlg->notel);
+        printf("Masukan Tempat Tanggal Lahir: ");
+        scanf("%s",pPlg->ttl);
+
+        fwrite (pPlg, sizeof(struct pelanggan), 1, output);
     fclose(output); // close
     return 0;
 }
 
+void CreateKry(){ //masih error dalam implementasi struct
+    int pil;
+    FILE *output = fopen("karyawan.dat", "a+ "); // open the file to write
+    pKry=(struct karyawan *)malloc(sizeof(struct karyawan));
+        printf("Masukan Kode Karyawan: ");
+        scanf("%9s",pKry->kodeK);
+        printf("Masukan Nama karyawan: ");
+        scanf("%9s",pKry->namaK);
+        printf("Masukan Alamat karyawan: ");
+        scanf("%s",&pKry->alamtK);
+        printf("Masukan No Telepon: ");
+        scanf("%d",pKry->notelp);
+        printf("Masukan Gender: ");
+        scanf("%s",pKry->gender);
+        printf("Masukan Tempat Tanggal Lahir: ");
+        scanf("%s",pKry->ttl);
+
+        fwrite (pPlg, sizeof(struct karyawan), 1, output);
+    fclose(output); // close
+}
+
+void CreateByr(){ //masih error dalam implementasi struct
+    int pil;
+    FILE *output = fopen("pembayaran.dat", "a+ "); // open the file to write
+    pNota=(struct pembayaran *)malloc(sizeof(struct pembayaran));
+    if (!output) {
+        return -1; // error
+    }
+        printf("Masukan Kode pembayaran: ");
+        scanf("%9s",pNota->id);
+        printf("Masukan Nama pembayaran: ");
+        scanf("%9s",pNota->menupesanan);
+        printf("Masukan Alamat pembayaran: ");
+        scanf("%s",&pNota->jenispembayaran);
+        printf("Masukan No Telepon: ");
+        scanf("%d",pNota->jumlah);
+        printf("Masukan Tempat Tanggal Lahir: ");
+        scanf("%s",pNota->total);
+
+        fwrite (pPlg, sizeof(struct pembayaran), 1, output);
+    fclose(output); // close
+    return 0;
+}
+
+void Read(){
+    FILE *output;
+    struct roti pRoti;
+    output = fopen("roti.txt","r");
+
+    printf("Lihat Data Roti\n");
+
+    if(output==NULL){
+        fprintf(stderr,"Can't open file");
+    } else{
+        printf("Ini Adalah Roti\n");
+    } while(fread(&pRoti,sizeof(struct roti),5,output)){
+        printf("Kode Roti: %s\n",pRoti.kdRoti);
+        printf("Nama Roti: %s\n",pRoti.namaRoti);
+        printf("Harga: %d\n",pRoti.harga);
+        printf("Jenis Roti: %s\n",pRoti.jenisRoti);
+        printf("Stok: %d",pRoti.stok);
+    }
+    fclose(output);
+    getch();
+
+}
 void userlogin(void){
     FILE *fp;
     char uName[10], pwd[10],name[10];int i;char c;
