@@ -2,6 +2,7 @@
 #include "roti.c"
 
 int main() {
+
     int pil;char c;
     userlogin();
     printf("Masukan pilihan 1. create \n 2. Read\n");
@@ -16,9 +17,5 @@ int main() {
         Read();
         break;
     }
-
-
-
-
     return 0;
 }

@@ -4,7 +4,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <conio.h>
-
+    
+    
     struct roti
     {
         char kdRoti[10];
@@ -21,6 +22,14 @@
         char password[10];
     }*pUser;
     struct karyawan{
+        char kodeAdmin[10];
+        char name[10];
+        char username[10];
+        char password[10];
+    }*pUser;   
+     
+    struct karyawan
+    {
         char kodeK[20];
         char namaK[20];
         char gender[10];
@@ -37,13 +46,36 @@
     }*pPlg;
 
     struct pembayaran{
+    };
+
+    struct pelanggan
+    {
+        char kodeP[20];
+        char nama[20];
+        char alamt[20];
+        int notel;
+        int ttl;
+    };
+
+    struct pembayaran
+    {
         char menupesanan[20];
         char jenispembayaran[20];
         int id;
         int jumlah;
         int total;
     }*pNota;
-    // int Create(struct apapunh);
+    
+    struct tokoroti
+    {
+        struct roti rt;
+        struct user user;
+        struct karyawan kry;
+        struct pelanggan plg;
+        struct pembayaran byr;
+    }*pTRoti;
+    
+    void CreateRoti();
     void Read();
     void Update(char input[]);
     void Delete();
