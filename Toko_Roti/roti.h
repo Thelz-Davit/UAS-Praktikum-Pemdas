@@ -5,9 +5,7 @@
 #include <stdlib.h>
 #include <conio.h>
     //TO DO LIST
-    //1. LOGIN BENERIN LAGI
-    //2. NOTA
-    //3. SISA DATA CRUD
+    //3. SISA DATA CRUD 1/4
     //4. Tampilan
     //5. Create directory buat nyimpen list data (biar ga manual)
     //6. Konfirmasi delete
@@ -33,22 +31,22 @@
         char namaK[20];
         char gender[10];
         char alamatK[20];
-        int notelp;
-        int ttl;
+        char notel[100];
+        char ttl[100];
     }karyawan;
 
     typedef struct {
         char kodeP[20];
         char namaP[20];
         char alamatP[20];
-        int notel;
-        int ttl;
+        char notel[100];
+        char ttl[100];
     }pelanggan;
 
     typedef struct {
         char menupesanan[20];
         char jenispembayaran[20];
-        int id;
+        char id[100];
         int jumlah;
         int total;
     }pembayaran;
@@ -64,11 +62,17 @@
     void Update();
     void Delete();
     void Search();
+    void UserAccess();
+    int CheckUser();
 
     char namaFile[100];
-    char lanjut='y';
-    // char buffer[0] = '\0';
+    char lanjut='y';char tUser='y';
     char dir[100] = "Roties/";
+    char use[100] = "Admin/";
+    char kry[100] = "Karyawan/";
+    char plgn[100] = "Pelanggan/";
+    char pay[100] = "Pembayaran/";
+    char passMasuk[100];
     FILE *fp;
     
 #endif

@@ -1,0 +1,6 @@
+Kode: kry1
+Nama: udin
+No Hp: 0811212121
+Alamat: Bandung
+Jenis Kelamin: M
+Tanggal Lahir: 12/2/1999
