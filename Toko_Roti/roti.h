@@ -5,8 +5,8 @@
 #include <stdlib.h>
 #include <conio.h>
     //TO DO LIST
-    //3. SISA DATA CRUD 1/4
-    //4. Tampilan
+    //3. SISA DATA CRUD done? cekin lagi tolong
+    //4. Tampilan (bagusin tampilannya)
     //5. Create directory buat nyimpen list data (biar ga manual)
     //6. Konfirmasi delete
 

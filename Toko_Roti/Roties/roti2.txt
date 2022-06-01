@@ -1,0 +1,5 @@
+Kode: roti2
+Nama: bapao
+Jenis: manis
+Harga: 5000
+Stok: 5
