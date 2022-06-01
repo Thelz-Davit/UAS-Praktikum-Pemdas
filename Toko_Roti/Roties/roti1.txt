@@ -1,5 +1,0 @@
-Kode: roti1
-Nama: bakpao
-Jenis: manis
-Harga: 5000
-Stok: 5

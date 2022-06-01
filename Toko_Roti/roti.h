@@ -57,12 +57,11 @@
     pelanggan sPlg;
     pembayaran sByr;
     
-    void CreateRoti();
+    void Create();
     void Read();
     void Update();
     void Delete();
     void Search();
-    void UserAccess();
     int CheckUser();
 
     char namaFile[100];

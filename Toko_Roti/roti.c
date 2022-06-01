@@ -2,7 +2,7 @@
 
 void Create(){
     int pilCreate;
-    printf("1.Roti\n2.Admin\n3.Karyawan\n4.Pelanggan\n5.Pembayaran\n");
+    printf("1.Roti\n2.Karyawan\n3.Pelanggan\n4.Pembayaran\n");
     printf("Masukan pilihan data masuk: ");
     scanf("%d",&pilCreate);
     switch (pilCreate)
@@ -109,7 +109,7 @@ void Create(){
             printf("Masukan Alamat: ");
             scanf("%s", sPlg.alamatP);
             printf("Masukan Tanggal Lahir: ");
-            scanf("%d", &sPlg.ttl);
+            scanf("%s", sPlg.ttl);
 
             if (fp == NULL)
             {
@@ -118,7 +118,7 @@ void Create(){
                 fprintf(fp, "Nama Pelanggan: %s\n", sPlg.namaP);
                 fprintf(fp, "Nomor HP: %d\n", sPlg.notel);
                 fprintf(fp, "Alamat: %s\n", sPlg.alamatP);
-                fprintf(fp, "Tanggal Lahir: %d\n", sPlg.ttl);
+                fprintf(fp, "Tanggal Lahir: %s\n", sPlg.ttl);
                 fclose(fp);
                 printf("Data telah dimasukan!\n");
             }
@@ -218,7 +218,7 @@ void Search(){
             fscanf(fp, "Alamat: %s\n", sKry.alamatK);
             fscanf(fp, "Jenis Kelamin: %s\n", sKry.gender);
             fscanf(fp, "Tanggal Lahir: %s\n", sKry.ttl);
-            printf("Kode: %s\n Nama: %s\n No Hp: %s\n Alamat: %d\n Jenis Kelamin: %d\n Tanggal Lahir: %s\n", sKry.kodeK,sKry.namaK,sKry.notel,sKry.alamatK,sKry.gender,sKry.ttl);    
+            printf("Kode: %s\n Nama: %s\n No Hp: %s\n Alamat: %s\n Jenis Kelamin: %s\n Tanggal Lahir: %s\n", sKry.kodeK,sKry.namaK,sKry.notel,sKry.alamatK,sKry.gender,sKry.ttl);    
         }
         fclose(fp);
         strcpy(kry,"Karyawan/");
@@ -382,7 +382,7 @@ void Update(){
             scanf("%s", sPlg.ttl);
             fprintf(fp, "Kode: %s\n", sPlg.kodeP);
             fprintf(fp, "Nama Pelanggan: %s\n", sPlg.namaP);
-            fprintf(fp, "Nomor HP: %d\n", sPlg.notel);
+            fprintf(fp, "Nomor HP: %s\n", sPlg.notel);
             fprintf(fp, "Alamat: %s\n", sPlg.alamatP);
             fprintf(fp, "Tanggal Lahir: %s\n", sPlg.ttl);
             fclose(fp);
