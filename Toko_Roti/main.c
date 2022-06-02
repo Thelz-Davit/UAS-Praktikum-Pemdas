@@ -8,7 +8,7 @@ int main() {
     {
         do
         {
-            printf("1. Create\n2.Search\n3.Update\n4.Delete\n");
+            tampilanmain();
             printf("Masukkan Pilihan : ");
             scanf("%d", &pilih);
 
@@ -33,11 +33,5 @@ int main() {
             scanf("%s", &lanjut);
         } while (lanjut=='y');
     }
-    
-    
-    
-    
-    // userlogin();
-    // CreateRoti();
     return 0;
 }

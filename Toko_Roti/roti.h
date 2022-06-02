@@ -5,10 +5,9 @@
 #include <stdlib.h>
 #include <conio.h>
     //TO DO LIST
-    //3. SISA DATA CRUD done? cekin lagi tolong
-    //4. Tampilan (bagusin tampilannya)
     //5. Create directory buat nyimpen list data (biar ga manual)
-    //6. Konfirmasi delete
+    //6. Konfirmasi delete (opsional)
+    //7. fix update pembayaran
 
     
     typedef struct{
@@ -57,6 +56,7 @@
     pelanggan sPlg;
     pembayaran sByr;
     
+    //operasi
     void Create();
     void Read();
     void Update();
@@ -64,8 +64,20 @@
     void Search();
     int CheckUser();
 
+    //tampilan
+    void tampilan();
+    void tampilanroti();
+    void tampilankry();
+    void tampilanplg();
+    void tampilanbyr();
+    void tampilandaftar();
+    void tampilanlogin();
+    void tampilanregis();
+    void tampilanmain();
+
     char namaFile[100];
-    char lanjut='y';char tUser='y';
+    char files[100];
+    char lanjut='y';char tUser='y';char tBeli='y';
     char dir[100] = "Roties/";
     char use[100] = "Admin/";
     char kry[100] = "Karyawan/";
@@ -73,5 +85,6 @@
     char pay[100] = "Pembayaran/";
     char passMasuk[100];
     FILE *fp;
-    
+    FILE *fo;
+    int totalSeluruh=0;
 #endif

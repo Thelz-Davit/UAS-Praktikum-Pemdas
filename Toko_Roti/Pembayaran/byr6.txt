@@ -1,0 +1,15 @@
+ID Detail: byr6
+Menu Pesanan: roti1
+Jumlah Pesanan: 2
+Total Pesanan: 2000
+Jenis Pembayaran: cash
+ID Detail: byr6
+Menu Pesanan: roti2
+Jumlah Pesanan: 3
+Total Pesanan: 17000
+Jenis Pembayaran: cash
+ID Detail: byr6
+Menu Pesanan: roti3
+Jumlah Pesanan: 3
+Total Pesanan: 23000
+Jenis Pembayaran: cash

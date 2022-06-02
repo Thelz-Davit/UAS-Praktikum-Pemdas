@@ -2,7 +2,7 @@
 
 void Create(){
     int pilCreate;
-    printf("1.Roti\n2.Karyawan\n3.Pelanggan\n4.Pembayaran\n");
+    tampilan();
     printf("Masukan pilihan data masuk: ");
     scanf("%d",&pilCreate);
     switch (pilCreate)
@@ -139,27 +139,74 @@ void Create(){
                 goto checkdupe4;
             }
             fclose(fp);
-
-            printf("Masukan Menu Pemesanan: ");
-            scanf("%s", sByr.menupesanan);
-            printf("Masukan Jumlah Pesanan: ");
-            scanf("%d", &sByr.jumlah);
-            printf("Masukan Total Pembayaran: ");
-            scanf("%d", &sByr.total);
-            printf("Masukan Jenis Pembayaran: ");
-            scanf("%s", sByr.jenispembayaran);
-
-            if (fp == NULL)
+            do
             {
-                fp = fopen(pay, "w");
-                fprintf(fp, "ID Detail: %s\n", sByr.id);
-                fprintf(fp, "Menu Pesanan: %s\n", sByr.menupesanan);
-                fprintf(fp, "Jumlah Pesanan: %d\n", sByr.jumlah);
-                fprintf(fp, "Total Pesanan: %d\n", sByr.total);
-                fprintf(fp, "Jenis Pembayaran: %s\n", sByr.jenispembayaran);
-                fclose(fp);
-                printf("Data telah dimasukan!");
-            }
+                operation:
+                printf("Masukan Menu Pemesanan: ");
+                scanf("%s", sByr.menupesanan);
+                strcpy(sRoti.kdRoti,sByr.menupesanan);
+                strcpy(files, sRoti.kdRoti);
+                strcat(files, ".txt");
+                strcat(dir, files);
+
+                fo = fopen(dir,"r+");
+                if (fo == NULL)
+                {
+                    printf("Kode Tidak ditemukan\n");
+                    strcpy(dir,"Roties/");
+                    goto operation;
+                }
+                else
+                {
+                    fscanf(fo, "Kode: %s\n", sRoti.kdRoti);
+                    fscanf(fo, "Nama: %s\n", sRoti.namaRoti);
+                    fscanf(fo, "Jenis: %s\n", sRoti.jenisRoti);
+                    fscanf(fo, "Harga: %d\n", &sRoti.harga);
+                    fscanf(fo, "Stok: %d\n", &sRoti.stok);
+                    printf("Masukan Jumlah Pesanan: ");
+                    scanf("%d", &sByr.jumlah);
+                    printf("Masukan Total Pembayaran: ");
+                    sByr.total += sRoti.harga*sByr.jumlah;
+                    printf("%d\n", sByr.total);
+                    printf("Masukan Jenis Pembayaran: ");
+                    scanf("%s", sByr.jenispembayaran);
+                }
+                if (fp != NULL)
+                {
+                    
+                    fp = fopen(pay, "a");
+                    fprintf(fp, "ID Detail: %s\n", sByr.id);
+                    fprintf(fp, "Menu Pesanan: %s\n", sByr.menupesanan);
+                    // printf("Nama: %s\n Jenis: %s\n Harga: %d\n Stok: %d\n",sRoti.namaRoti,sRoti.jenisRoti,sRoti.harga,sRoti.stok); 
+                    fprintf(fp, "Jumlah Pesanan: %d\n", sByr.jumlah);
+                    fprintf(fp, "Total Pesanan: %d\n", sByr.total);
+                    fprintf(fp, "Jenis Pembayaran: %s\n", sByr.jenispembayaran);
+                    fclose(fp);
+                    fclose(fo);
+                    printf("Data telah dimasukan!");
+                }
+
+                if (fp == NULL)
+                {
+                    
+                    fp = fopen(pay, "w");
+                    // fprintf(fp, "ID Detail: %s\n", sByr.id);
+                    fprintf(fp, "Menu Pesanan: %s\n", sByr.menupesanan);
+                    // printf("Nama: %s\n Jenis: %s\n Harga: %d\n Stok: %d\n",sRoti.namaRoti,sRoti.jenisRoti,sRoti.harga,sRoti.stok); 
+                    fprintf(fp, "Jumlah Pesanan: %d\n", sByr.jumlah);
+                    fprintf(fp, "Total Pesanan: %d\n", sByr.total);
+                    fprintf(fp, "Jenis Pembayaran: %s\n", sByr.jenispembayaran);
+                    fclose(fp);
+                    fclose(fo);
+                    printf("Data telah dimasukan!\n");
+                    
+                }
+                
+                
+                printf("tambah barang ? ");
+                scanf("%s", &tBeli);
+                strcpy(dir,"Roties/");
+            } while (tBeli=='y');
             strcpy(pay,"Pembayaran/");
             break;
     default:
@@ -170,7 +217,8 @@ void Create(){
 
 void Search(){
     int pilSearch;
-    printf("Pilih Data yang akan dicari");
+    tampilan();
+    printf("Pilih Data yang akan dicari: ");
     scanf("%d",&pilSearch);
     switch (pilSearch)
     {
@@ -261,12 +309,18 @@ void Search(){
         }
         else
         {
-            fscanf(fp, "ID Detail: %s\n", sByr.id);
-            fscanf(fp, "Menu Pesanan: %s\n", sByr.menupesanan);
-            fscanf(fp, "Jumlah Pesanan: %d\n", &sByr.jumlah);
-            fscanf(fp, "Total Pesanan: %d\n", &sByr.total);
-            fscanf(fp, "Jenis Pembayaran: %s\n", sByr.jenispembayaran);
-            printf("ID: %s\n Menu: %s\n Jumlah: %d\n Total: %d\n Jenis: %s\n",sByr.id,sByr.menupesanan,sByr.jumlah,sByr.total,sByr.jenispembayaran);    
+            do
+            {
+                fscanf(fp, "ID Detail: %s\n", sByr.id);
+                fscanf(fp, "Menu Pesanan: %s\n", sByr.menupesanan);
+                fscanf(fp, "Jumlah Pesanan: %d\n", &sByr.jumlah);
+                fscanf(fp, "Total Pesanan: %d\n", &sByr.total);
+                fscanf(fp, "Jenis Pembayaran: %s\n", sByr.jenispembayaran);
+                printf("ID: %s\n Menu: %s\n Jumlah: %d\n Total: %d\n Jenis: %s\n",sByr.id,sByr.menupesanan,sByr.jumlah,sByr.total,sByr.jenispembayaran);
+                totalSeluruh = totalSeluruh+sByr.total;
+            } while (!feof(fp));
+            
+            printf("Total Semua :%d\n",totalSeluruh);
         }
         fclose(fp);
         strcpy(pay,"Pembayaran/");
@@ -283,7 +337,8 @@ void Read(){
 
 void Update(){
     int pilUpdate;
-    printf("Pilih Data yang akan diubah");
+    tampilan();
+    printf("Pilih Data yang akan diubah: ");
     scanf("%d",&pilUpdate);
     switch (pilUpdate)
     {
@@ -402,26 +457,76 @@ void Update(){
             perror("Error: ");
             fclose(fp);
         }
-        else
-        {
-            fp = fopen(pay,"w");
-            printf("Masukan Menu Pesanan: ");
-            scanf("%s", sByr.id);
-            printf("Masukan Jumlah Pesanan: ");
-            scanf("%d", &sByr.jumlah);
-            printf("Masukan Total Pesanan: ");
-            scanf("%d", &sByr.total);
-            printf("Masukan Jenis Pembayaran: ");
-            scanf("%s", sByr.jenispembayaran);
-            fprintf(fp, "ID Detail: %s\n", sByr.id);
-            fprintf(fp, "Menu Pesanan: %s\n", sByr.menupesanan);
-            fprintf(fp, "Jumlah Pesanan: %d\n", sByr.jumlah);
-            fprintf(fp, "Total Pesanan: %d\n", sByr.total);
-            fprintf(fp, "Jenis Pembayaran: %s\n", sByr.jenispembayaran);
-            fclose(fp);
-        }
-        strcpy(pay,"Pembayaran/");
-        break;
+        do
+            {
+                operation:
+                printf("Masukan Menu Pemesanan: ");
+                scanf("%s", sByr.menupesanan);
+                strcpy(sRoti.kdRoti,sByr.menupesanan);
+                strcpy(files, sRoti.kdRoti);
+                strcat(files, ".txt");
+                strcat(dir, files);
+
+                fo = fopen(dir,"r+");
+                if (fo == NULL)
+                {
+                    printf("Kode Tidak ditemukan\n");
+                    strcpy(dir,"Roties/");
+                    goto operation;
+                }
+                else
+                {
+                    fscanf(fo, "Kode: %s\n", sRoti.kdRoti);
+                    fscanf(fo, "Nama: %s\n", sRoti.namaRoti);
+                    fscanf(fo, "Jenis: %s\n", sRoti.jenisRoti);
+                    fscanf(fo, "Harga: %d\n", &sRoti.harga);
+                    fscanf(fo, "Stok: %d\n", &sRoti.stok);
+                    printf("Masukan Jumlah Pesanan: ");
+                    scanf("%d", &sByr.jumlah);
+                    printf("Masukan Total Pembayaran: ");
+                    sByr.total += sRoti.harga*sByr.jumlah;
+                    printf("%d\n", sByr.total);
+                    printf("Masukan Jenis Pembayaran: ");
+                    scanf("%s", sByr.jenispembayaran);
+                }
+                if (fp != NULL)
+                {
+                    
+                    fp = fopen(pay, "a");
+                    fprintf(fp, "ID Detail: %s\n", sByr.id);
+                    fprintf(fp, "Menu Pesanan: %s\n", sByr.menupesanan);
+                    // printf("Nama: %s\n Jenis: %s\n Harga: %d\n Stok: %d\n",sRoti.namaRoti,sRoti.jenisRoti,sRoti.harga,sRoti.stok); 
+                    fprintf(fp, "Jumlah Pesanan: %d\n", sByr.jumlah);
+                    fprintf(fp, "Total Pesanan: %d\n", sByr.total);
+                    fprintf(fp, "Jenis Pembayaran: %s\n", sByr.jenispembayaran);
+                    fclose(fp);
+                    fclose(fo);
+                    printf("Data telah dimasukan!");
+                }
+
+                if (fp == NULL)
+                {
+                    
+                    fp = fopen(pay, "w");
+                    // fprintf(fp, "ID Detail: %s\n", sByr.id);
+                    fprintf(fp, "Menu Pesanan: %s\n", sByr.menupesanan);
+                    // printf("Nama: %s\n Jenis: %s\n Harga: %d\n Stok: %d\n",sRoti.namaRoti,sRoti.jenisRoti,sRoti.harga,sRoti.stok); 
+                    fprintf(fp, "Jumlah Pesanan: %d\n", sByr.jumlah);
+                    fprintf(fp, "Total Pesanan: %d\n", sByr.total);
+                    fprintf(fp, "Jenis Pembayaran: %s\n", sByr.jenispembayaran);
+                    fclose(fp);
+                    fclose(fo);
+                    printf("Data telah dimasukan!\n");
+                    
+                }
+                
+                
+                printf("tambah barang ? ");
+                scanf("%s", &tBeli);
+                strcpy(dir,"Roties/");
+            } while (tBeli=='y');
+            strcpy(pay,"Pembayaran/");
+            break;
     default:
         printf("Pilihan tidak ada");
         break;
@@ -431,7 +536,8 @@ void Update(){
 
 void Delete(){
     int pilDel;
-    printf("Pilih Data yang akan dihapus");
+    tampilan();
+    printf("Pilih Data yang akan dihapus :");
     scanf("%d",&pilDel);
     switch (pilDel)
     {
@@ -484,6 +590,7 @@ void Delete(){
 
 int CheckUser(){
     int askReg;
+    tampilandaftar();
     printf("1.Login\n2.Registrasi\n");
     printf("Masukan Pilihan : ");
     scanf("%d", &askReg);
@@ -491,6 +598,7 @@ int CheckUser(){
     {
     case 1:
         login:
+        tampilanlogin();
         printf("Masukan username: ");
         scanf("%s", sUser.username);
         strcpy(namaFile, sUser.username);
@@ -523,6 +631,7 @@ int CheckUser(){
         do
         {
             checkdupeR:
+            tampilanregis();
             printf("Masukan Kode Admin: ");
             scanf("%s", sUser.kodeAdmin);
             printf("Masukan Nama: ");
@@ -561,4 +670,60 @@ int CheckUser(){
     default:
         break;
     }
+}
+void tampilan(){
+    printf("==============================\n");
+    printf("| Data Toko Roti Cake Bakery |\n");
+    printf("==============================\n");
+    printf("| 1. Roti                    |\n");
+    printf("| 2. Karyawan                |\n");
+    printf("| 3. Pelanggan               |\n");
+    printf("| 4. Pembayaran              |\n");
+    printf("==============================\n");
+}
+void tampilankry(){
+    printf("\n==============================\n");
+    printf("| Data Karyawan Cake Bakery |");
+    printf("==============================\n");
+}
+void tampilanplg(){
+    printf("\n==============================\n");
+    printf("| Data Pelanggan Cake Bakery |");
+    printf("==============================\n");
+}
+void tampilanbyr(){
+
+}
+void tampilanroti(){
+    printf("\n=========================\n");
+    printf("| Data Roti Cake Bakery |");
+    printf("=========================\n");
+}
+void tampilandaftar(){
+    printf("=============================\n");
+    printf("|  WELCOME TO CAKE BAKERY   |\n");
+    printf("=============================\n");
+    printf("|  1. Login                 |\n");
+    printf("|  2. Registrasi            |\n");
+    printf("=============================\n");
+}
+void tampilanlogin(){
+    printf("\n====================\n");
+    printf("|    Menu Login    |\n");
+    printf("====================\n");
+}
+void tampilanregis(){
+    printf("\n====================\n");
+    printf("|  Menu Registrasi   |\n");
+    printf("====================\n");
+}
+void tampilanmain(){
+    printf("========================================\n");
+    printf("|  Menu Pilihan Toko Roti Cake Bakery  |\n");
+    printf("========================================\n");
+    printf("|  1. Create                           |\n");
+    printf("|  2. Search                           |\n");
+    printf("|  3. Update                           |\n");
+    printf("|  4. Delete                           |\n");
+    printf("========================================\n");
 }
