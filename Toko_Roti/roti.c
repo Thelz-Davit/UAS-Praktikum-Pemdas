@@ -8,6 +8,8 @@ void Create(){
     switch (pilCreate)
     {
         case 1:
+        do
+        {
             checkdupe:
             printf("Masukan Kode Roti: ");
             scanf("%s", sRoti.kdRoti);
@@ -43,9 +45,14 @@ void Create(){
                 fclose(fp);
                 printf("Data telah dimasukan!\n");
             }
+            printf("tambah barang ? ");
+            scanf("%s", &tRoti);
             strcpy(dir,"Roties/");
+        } while (tRoti=='y');
             break;
         case 2:
+        do
+        {
             checkdupe2:
             printf("Masukan Kode Karyawan: ");
             scanf("%s", sKry.kodeK);
@@ -82,11 +89,16 @@ void Create(){
                 fprintf(fp, "Jenis Kelamin: %s\n", sKry.gender);
                 fprintf(fp, "Tanggal Lahir: %s\n", sKry.ttl);
                 fclose(fp);
-                printf("Data telah dimasukan!");
+                printf("Data telah dimasukan!\n");
             }
+            printf("tambah barang ? ");
+            scanf("%s", &tKry);
             strcpy(kry,"Karyawan/");
+        } while (tKry=='y');
             break;
         case 3:
+        do
+        {
             checkdupe3:
             printf("Masukan Kode Pelanggan: ");
             scanf("%s", sPlg.kodeP);
@@ -105,7 +117,7 @@ void Create(){
             printf("Masukan Nama Pelanggan: ");
             scanf("%s", sPlg.namaP);
             printf("Masukan No HP Pelanggan: ");
-            scanf("%d", &sPlg.notel);
+            scanf("%s", &sPlg.notel);
             printf("Masukan Alamat: ");
             scanf("%s", sPlg.alamatP);
             printf("Masukan Tanggal Lahir: ");
@@ -116,13 +128,18 @@ void Create(){
                 fp = fopen(plgn, "w");
                 fprintf(fp, "Kode: %s\n", sPlg.kodeP);
                 fprintf(fp, "Nama Pelanggan: %s\n", sPlg.namaP);
-                fprintf(fp, "Nomor HP: %d\n", sPlg.notel);
+                fprintf(fp, "Nomor HP: %s\n", sPlg.notel);
                 fprintf(fp, "Alamat: %s\n", sPlg.alamatP);
                 fprintf(fp, "Tanggal Lahir: %s\n", sPlg.ttl);
                 fclose(fp);
                 printf("Data telah dimasukan!\n");
             }
+            printf("tambah barang ? ");
+            scanf("%s", &tPlg);
             strcpy(plgn,"Pelanggan/");
+        } while (tPlg=='y');
+        
+            
             break;
         case 4:
             checkdupe4:
@@ -177,22 +194,19 @@ void Create(){
                     fp = fopen(pay, "a");
                     fprintf(fp, "ID Detail: %s\n", sByr.id);
                     fprintf(fp, "Menu Pesanan: %s\n", sByr.menupesanan);
-                    // printf("Nama: %s\n Jenis: %s\n Harga: %d\n Stok: %d\n",sRoti.namaRoti,sRoti.jenisRoti,sRoti.harga,sRoti.stok); 
                     fprintf(fp, "Jumlah Pesanan: %d\n", sByr.jumlah);
                     fprintf(fp, "Total Pesanan: %d\n", sByr.total);
                     fprintf(fp, "Jenis Pembayaran: %s\n", sByr.jenispembayaran);
                     fclose(fp);
                     fclose(fo);
-                    printf("Data telah dimasukan!");
+                    printf("Data telah dimasukan!\n");
                 }
 
                 if (fp == NULL)
                 {
                     
                     fp = fopen(pay, "w");
-                    // fprintf(fp, "ID Detail: %s\n", sByr.id);
                     fprintf(fp, "Menu Pesanan: %s\n", sByr.menupesanan);
-                    // printf("Nama: %s\n Jenis: %s\n Harga: %d\n Stok: %d\n",sRoti.namaRoti,sRoti.jenisRoti,sRoti.harga,sRoti.stok); 
                     fprintf(fp, "Jumlah Pesanan: %d\n", sByr.jumlah);
                     fprintf(fp, "Total Pesanan: %d\n", sByr.total);
                     fprintf(fp, "Jenis Pembayaran: %s\n", sByr.jenispembayaran);
@@ -201,8 +215,6 @@ void Create(){
                     printf("Data telah dimasukan!\n");
                     
                 }
-                
-                
                 printf("tambah barang ? ");
                 scanf("%s", &tBeli);
                 strcpy(dir,"Roties/");
@@ -317,10 +329,9 @@ void Search(){
                 fscanf(fp, "Total Pesanan: %d\n", &sByr.total);
                 fscanf(fp, "Jenis Pembayaran: %s\n", sByr.jenispembayaran);
                 printf("ID: %s\n Menu: %s\n Jumlah: %d\n Total: %d\n Jenis: %s\n",sByr.id,sByr.menupesanan,sByr.jumlah,sByr.total,sByr.jenispembayaran);
-                totalSeluruh = totalSeluruh+sByr.total;
             } while (!feof(fp));
             
-            printf("Total Semua :%d\n",totalSeluruh);
+            printf("Total Semua :%d\n",sByr.total);
         }
         fclose(fp);
         strcpy(pay,"Pembayaran/");
@@ -329,10 +340,6 @@ void Search(){
         break;
     }
     
-}
-
-void Read(){
-    //pengenya read semua data, tp kayanya fitur search itu buat menampilkan udah cukup
 }
 
 void Update(){
@@ -590,8 +597,8 @@ void Delete(){
 
 int CheckUser(){
     int askReg;
+    back:
     tampilandaftar();
-    printf("1.Login\n2.Registrasi\n");
     printf("Masukan Pilihan : ");
     scanf("%d", &askReg);
     switch (askReg)
@@ -610,6 +617,12 @@ int CheckUser(){
         {
             printf("User Tidak ditemukan\n");
             strcpy(use,"Admin/");
+            try--;
+            if (try==0)
+            {
+                goto back; 
+            }
+            
             goto login;
         }
         else
@@ -666,6 +679,7 @@ int CheckUser(){
             scanf("%s",&tUser);
 
         } while (tUser=='y');
+            goto back;
             break;
     default:
         break;

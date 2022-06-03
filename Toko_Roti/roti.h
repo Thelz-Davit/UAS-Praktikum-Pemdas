@@ -4,12 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <conio.h>
-    //TO DO LIST
-    //5. Create directory buat nyimpen list data (biar ga manual)
-    //6. Konfirmasi delete (opsional)
-    //7. fix update pembayaran
 
-    
     typedef struct{
         char kdRoti[100];
         char namaRoti[100];
@@ -75,9 +70,11 @@
     void tampilanregis();
     void tampilanmain();
 
+    int try=3;
     char namaFile[100];
     char files[100];
-    char lanjut='y';char tUser='y';char tBeli='y';
+    char lanjut='y';char tUser='y';
+    char tBeli='y';char tRoti='y';char tPlg='y';char tKry='y';
     char dir[100] = "Roties/";
     char use[100] = "Admin/";
     char kry[100] = "Karyawan/";

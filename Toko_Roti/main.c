@@ -29,7 +29,7 @@ int main() {
                     printf("pilihan tidak ada\n");
                     break;
             }
-            printf("lanjut? ");
+            printf("Kembali Ke Menu (y/n)? ");
             scanf("%s", &lanjut);
         } while (lanjut=='y');
     }
