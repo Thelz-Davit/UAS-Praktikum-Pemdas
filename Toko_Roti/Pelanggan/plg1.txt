@@ -1,0 +1,5 @@
+Kode: plg1
+Nama Pelanggan: sopo
+Nomor HP: 0812321322
+Alamat: Malaysia
+Tanggal Lahir: 01/01/2001
